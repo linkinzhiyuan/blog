@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>react-states</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		var MeassageBox = React.createClass({
+		//设置state
+			getInitialState:function(){
+				return {
+					isVisible:true,
+					titleMeassage:'hello world',
+				}
+			},
+			render:function(){
+				var styleObject = {
+				//调用state
+					display:this.state.isVisible ? 'block':'none',
+				}
+				return (
+					<div>
+						<h1 style={styleObject}>{this.state.titleMeassage}</h1>
+						<Mesbox />
+					</div>
+				)
+			}
+		});
+		var Mesbox = React.createClass({
+			render:function(){
+				return (
+					<p>上面的来自state数据</p>
+				)
+			} 	
+		});
+
+		var MeassageRender = React.render(
+			<MeassageBox />,
+			document.getElementById('app'),
+			function(){
+				console.log("渲染完成！");	
+			}
+		);
+	</script>
+</body>
+</html>

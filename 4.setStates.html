@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>react-states</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		var ClickBox = React.createClass({
+			getInitialState:function(){
+				return {
+					ClickCount:0,
+					isVisible:true,
+				}
+			},
+			handleClick:function(){
+				
+				this.setState({
+					ClickCount:this.state.ClickCount + 1,
+					isVisible:!this.state.isVisible,
+				})
+			
+			},
+			render:function(){
+				var styleObj = {
+					display:this.state.isVisible ? 'block':'none',
+				}
+				return (
+					<div>
+						<h1>点击下面的按钮同时能切换p标签显示</h1>
+						<button onClick={this.handleClick}>点击一下</button>
+						<h1>一共点击我：{this.state.ClickCount}</h1>
+						<p style={styleObj}>我是p标签</p>
+					</div>
+				)
+			}
+		});
+
+		var MeassageRender = React.render(
+			<ClickBox />,
+			document.getElementById('app'),
+			function(){
+				console.log("渲染完成！");	
+			}
+		);
+	</script>
+</body>
+</html>

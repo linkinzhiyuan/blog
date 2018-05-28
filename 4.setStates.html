@@ -22,7 +22,6 @@
 					ClickCount:this.state.ClickCount + 1,
 					isVisible:!this.state.isVisible,
 				})
-			
 			},
 			render:function(){
 				var styleObj = {
@@ -42,9 +41,6 @@
 		var MeassageRender = React.render(
 			<ClickBox />,
 			document.getElementById('app'),
-			function(){
-				console.log("渲染完成！");	
-			}
 		);
 	</script>
 </body>

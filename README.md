@@ -5,6 +5,7 @@
 #### ES6篇
 - [ES6-解构赋值](https://github.com/LinkChenzy/blog/issues/5)
 - [ES6-第七种数据类型Symbol](https://github.com/LinkChenzy/blog/issues/6)
+- [ES6-Set和Map数据结构](https://github.com/LinkChenzy/blog/issues/7)
 
 #### Git篇
 - [git 使用过程中的问题汇总](https://github.com/LinkChenzy/blog/issues/1)

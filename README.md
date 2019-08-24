@@ -15,7 +15,8 @@
 - [forEach，map，filter，sort，some，去重总结](https://github.com/LinkChenzy/blog/issues/2)
 - [js 获取网页高度宽度方法](https://github.com/LinkChenzy/blog/issues/3)
 - [js 获取时间，以及转化方法](https://github.com/LinkChenzy/blog/issues/4)
-- [js 数据类型](https://github.com/LinkChenzy/blog/issues/9)
+- [js 数据类型,包括Boolean,Number,String,Object,Array,Function对象](https://github.com/LinkChenzy/blog/issues/9)
+- [js Math,Date,JSON,RegExp对象](https://github.com/LinkChenzy/blog/issues/10)
 
 
 

@@ -17,6 +17,8 @@
 - [js 获取时间，以及转化方法](https://github.com/LinkChenzy/blog/issues/4)
 - [js 数据类型,包括Boolean,Number,String,Object,Array,Function对象](https://github.com/LinkChenzy/blog/issues/9)
 - [js Math,Date,JSON,RegExp对象](https://github.com/LinkChenzy/blog/issues/10)
+- [js 面向对象编程](https://github.com/LinkChenzy/blog/issues/11)
+
 
 
 

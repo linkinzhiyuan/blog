@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>layout</title>
+        <style type="text/css">
+            html *{
+                margin:0;padding:0
+            }
+            .layout{margin-top:100px;}
+            .layout acticle>div{ height:100px;}
+            .left{
+                background:red;width:300px;
+            }
+            .center{
+                background:yellow;
+            }
+            .right{
+                background:blue;width:300px;
+            }
+            /* 浮动解决方案 */
+            .float-box .left{
+                float:left;
+                width:300px;
+            }
+            .float-box .right{
+                float:right;
+                width:300px;
+            }
+            /* 定位方案 */
+            .position-box div{
+                position:absolute;
+            }
+            .position .left{
+                left:0;width:300px;
+            }
+            .position .right{
+                right:0;width:300px;
+            }
+            .position .center{
+                left:300px;right:300px
+            }
+            /* flex */
+            .flex{ margin-top:300px; }
+            .flex-box{ display:flex; }
+            .flex-box .center{flex:1;}
+            /* table */
+            .table-box{display:table;width:100%;}
+            .table-box .left,.table-box .right,.table-box .center{
+                display:table-cell;
+            }
+            /* grid */
+            .grid-box{
+                display:grid;
+                grid-template-columns: 300px auto 300px;
+                grid-template-rows: 3;
+            }
+            /* calc */
+            .calc-box{
+                width:100%;
+            }
+            .calc-box>div{float:left}
+            .calc-box .center{
+                width:calc( 100% - 600px);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 浮动方案 -->
+        <section class="layout float">
+            <acticle class="float-box">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="center">
+                    中间部分float
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+            </acticle>
+        </section>
+        <!-- 绝对定位方案 -->
+        <section class="layout position">
+            <acticle class="position-box">
+                <div class="left"></div>
+                <div class="center">
+                    position
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+                <div class="right"></div>
+            </acticle>
+        </section>
+        <!-- flex方案 -->
+        <section class="layout flex">
+            <acticle class="flex-box">
+                <div class="left"></div>
+                <div class="center">
+                    flex
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+                <div class="right"></div>
+            </acticle>
+        </section>
+        <!-- table方案 -->
+        <section class="layout table">
+            <acticle class="table-box">
+                <div class="left"></div>
+                <div class="center">
+                    table<p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+                <div class="right"></div>
+            </acticle>
+        </section>
+        <!-- grid方案 -->
+        <!-- http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html -->
+        <section class="layout grid">
+            <acticle class="grid-box">
+                <div class="left"></div>
+                <div class="center">
+                    grid
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+                <div class="right"></div>
+            </acticle>
+        </section>
+        <!-- grid方案 -->
+        <section class="layout calc">
+            <acticle class="calc-box">
+                <div class="left"></div>
+                <div class="center">
+                    calc
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                    <p>增加的内容</p>
+                </div>
+                <div class="right"></div>
+            </acticle>
+        </section>
+    </body>
+</html>
+<!-- 延伸问题 -->
+1.各种方案的优缺点
+浮动：清除浮动，周边的关系处理，脱离文档流，兼容性较好
+定位：快捷，布局脱离文档流，后面的布局也需要脱离
+flex:解决上面的布局，手机端适用，兼容性不好
+table:兼容性好，text-align、vertical-align等对齐属性起作用，margin不起作用。宽高百分比值不起作用。对设置了float、absolute的元素不起作用。且IE6、7不支持
+grid:代码简化，兼容性不好
+2.高度不固定，去掉高度已知
+flex,table
+3.兼容性
+
+
+<!-- 作业 -->
+上中下布局？

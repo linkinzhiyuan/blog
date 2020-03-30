@@ -13,6 +13,7 @@ const obj1 = {
 
 /**
  * 深拷贝实现
+ * Object.assign() 不是深拷贝
  */
 function deepclone(obj = {}){
     // obj不是对象，数组，函数，或者是null
@@ -36,16 +37,18 @@ function deepclone(obj = {}){
     return result
 }
 let obj3 = deepclone(obj1);
-obj3.address = 'shanghai';
+// obj1.name.first = 'gu';
+// obj3.address = 'shanghai';
 console.log(obj1,obj3)
+console.log( obj1 === obj3)
 
 const NULL = undefined;
 console.log(NULL==null) // 相当于 NULL === null || NULL === undefined 
 
 // 以下是falsely变量，其他的都是truly变量
-!!0===false
-!!Nan === false
-!!'' === false
-!!null === false
-!!undefined === false
-!!false === false
+// !!0===false
+// !!Nan === false
+// !!'' === false
+// !!null === false
+// !!undefined === false
+// !!false === false

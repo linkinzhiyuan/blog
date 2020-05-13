@@ -64,8 +64,75 @@
                 width:calc( 100% - 600px);
             }
         </style>
+        <!-- 居中 -->
+        <style>
+            /* position table flex grid */
+            .center-box,.center-box2{
+                border: 1px solid #ddd;
+                width: 100%;
+                height: 100px;
+                margin-top: 30px;
+            }
+            /* flex */
+            .center-box{
+                display: flex;
+                justify-content: center;align-items: center;
+                /* justify-content: center; 主轴对齐 */
+                /* align-items: center; 交叉轴对齐 */
+                /* align-content: center; 交叉轴多轴对齐 */
+                /* align-self: center; 子元素对齐 */
+            }
+            /* table */
+            .center-box2{
+                text-align: center;
+                display: table;
+            }
+            .center-box2 span{
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .center-position{
+                position: relative;
+                height: 100px;
+                margin-top: 30px;
+                border: 1px solid #ddd;
+            }
+            .center-position span{
+                position: absolute;
+                left: 0;right: 0;top: 0;bottom: 0;
+                margin: auto;
+                /* 需要子元素宽度和高度已知 */
+                width: 20px;height: 20px;
+                /* position:absolute;
+                left:50%;
+                top:50%;
+                transform:translate(-50%,-50%); */
+            }
+            .content-grid{
+                display: grid;
+                height: 100px;
+                border: 1px solid #ddd;
+            }
+            .content-grid span{
+                justify-self: center;
+                align-self: center;
+            }
+        </style>
     </head>
     <body>
+
+        <p class="center-box">
+            <span>123</span>
+        </p>
+        <p class="center-box2">
+            <span>123</span>
+        </p>
+        <p class="center-position">
+            <span>position</span>
+        </p>
+        <p class="content-grid">
+            <span>grid</span>
+        </p>
         <!-- 浮动方案 -->
         <section class="layout float">
             <acticle class="float-box">
@@ -141,7 +208,7 @@
                 <div class="right"></div>
             </acticle>
         </section>
-        <!-- grid方案 -->
+        <!-- calc方案 -->
         <section class="layout calc">
             <acticle class="calc-box">
                 <div class="left"></div>
@@ -159,7 +226,7 @@
     </body>
 </html>
 <!-- 延伸问题 -->
-1.各种方案的优缺点
+<!-- 1.各种方案的优缺点
 浮动：清除浮动，周边的关系处理，脱离文档流，兼容性较好
 定位：快捷，布局脱离文档流，后面的布局也需要脱离
 flex:解决上面的布局，手机端适用，兼容性不好
@@ -167,8 +234,8 @@ table:兼容性好，text-align、vertical-align等对齐属性起作用，margi
 grid:代码简化，兼容性不好
 2.高度不固定，去掉高度已知
 flex,table
-3.兼容性
+3.兼容性 -->
 
 
 <!-- 作业 -->
-上中下布局？
+<!-- 上中下布局？ -->

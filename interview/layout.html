@@ -87,7 +87,7 @@
                 text-align: center;
                 display: table;
             }
-            .center-box2 span{
+            .center-box2 span,.center-box2 p{
                 display: table-cell;
                 vertical-align: middle;
             }
@@ -98,15 +98,15 @@
                 border: 1px solid #ddd;
             }
             .center-position span{
-                position: absolute;
+                /* position: absolute;
                 left: 0;right: 0;top: 0;bottom: 0;
-                margin: auto;
+                margin: auto; */
                 /* 需要子元素宽度和高度已知 */
-                width: 20px;height: 20px;
-                /* position:absolute;
+                /* width: 20px;height: 20px; */
+                position:absolute;
                 left:50%;
                 top:50%;
-                transform:translate(-50%,-50%); */
+                transform:translate(-50%,-50%);
             }
             .content-grid{
                 display: grid;
@@ -121,12 +121,14 @@
     </head>
     <body>
 
-        <p class="center-box">
-            <span>123</span>
-        </p>
-        <p class="center-box2">
-            <span>123</span>
-        </p>
+        <div class="center-box">
+            <!-- <span>123</span> -->
+            <p>123</p>
+        </div>
+        <div class="center-box2">
+            <!-- <span>123</span> -->
+            <p>123</p>
+        </div>
         <p class="center-position">
             <span>position</span>
         </p>

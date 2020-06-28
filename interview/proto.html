@@ -25,8 +25,8 @@
                 const o = Object.create(F.prototype);
                 //转化this执行上下文
                 const k = F.apply(o);
-                console.log('k',k)
-                console.log('o',o)
+                // console.log('k',k)
+                // console.log('o',o)
                 if(typeof k === 'object'){
                     return k
                 }else{

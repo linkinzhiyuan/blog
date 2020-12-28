@@ -1,0 +1,56 @@
+<!-- 
+理解BFC https://zhuanlan.zhihu.com/p/25321647
+
+BFC概念：Block Formatting Contexts 块级格式化上下文，具有BFC特性的元素，可以看做是隔离的独立的容器，容器内的元素不会
+在布局上影响外面的元素，并且BFC具有普通容器没有的一些特性
+
+触发BFC的条件：
+1.body 根元素
+2.浮动元素：float除none以外的值
+3.绝对定位元素：position(absolute,fixed)
+4.display为inline-block/table-cells/flex
+5.overflow除了visible以外的值（hidden,auto,scroll）
+
+特性：
+1.同一个BFC里面的边距会发生重叠
+2.可以包含浮动元素（清除浮动）
+3.可以阻止元素被浮动的元素覆盖
+4.计算BFC的高度时，浮动子元素也参与计算 
+-->
+
+
+<!-- 单行和多行文本溢出省略效果 -->
+
+
+<style>
+    /* 单行  */
+    p {
+        overflow: hidden; 
+        text-overflow:ellipsis; 
+        white-space: nowrap;
+    }
+    /* 多行 */
+    div {
+        display: -webkit-box; 
+        -webkit-box-orient: vertical; 
+        -webkit-line-clamp: 3; 
+        overflow: hidden;
+    }
+    /* 多行 考虑兼容性 */
+    div.webkit {
+        position: relative; 
+        line-height: 20px; 
+        max-height: 40px;
+        overflow: hidden;
+    } 
+    div.webkit::after {
+        content: "..."; 
+        position: absolute; 
+        bottom: 0; right: 0; 
+        padding-left: 40px; 
+        background: -webkit-linear-gradient(left, transparent, #fff 55%); 
+        background: -o-linear-gradient(right, transparent, #fff 55%); 
+        background: -moz-linear-gradient(right, transparent, #fff 55%); 
+        background: linear-gradient(to right, transparent, #fff 55%); 
+    }
+</style>

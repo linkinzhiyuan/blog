@@ -40,7 +40,8 @@
         s1.arr.push(4)
         // console.log(s1,s2)
 
-        // 3.组合式继承 缺点执行两次构造函数Parent3，浪费资源
+        // 3.组合式继承 缺点执行两次构造函数Parent3，浪费资源，
+        // parent3内部有可能有副作用，比如写日志，修改状态，给this添加新的属性，注册到替他的对象，会影响子代的实例
         function Parent3(){
             this.name = 'parent3';
             this.arr = [1,2,3];
@@ -55,6 +56,7 @@
         // console.log('push之后',s3,s4)
 
         // 4.组合继承优化1，缺点不确定是Parent4还是Child4直接实例化的
+        // 并不会创建一个新的对象关联到Child4.prototype，而是直接引用Parent4.prototype，修改Child4.prototype的方法直接影响父类的原型
         function Parent4(){
             this.name = 'parent4';
             this.arr = [1,2,3];
@@ -82,11 +84,24 @@
             Parent5.call(this);
             this.type = 'child5';
         }
+        // 缺点是 创建一个新的对象，并抛弃原有的默认对象，不能直接修改默认对象
         Child5.prototype = Object.create(Parent5.prototype); //通过创建原型链的方式，把Child5.prototype.__proto__ === Parent5.prototype
+        // 或者使用ES6的新语法
+        // Object.setPrototypeOf(Child5.prototype,Parent5.prototype);
         Child5.prototype.constructor = Child5;
         const s7 = new Child5();
         // console.log('s7',s7 instanceof Child5,s7 instanceof Parent5) // true true
         // console.log('s7',s7.constructor,s7.__proto__.constructor) // Child5
+
+
+        // Object.create的polyfill
+        // if(!Object.create){
+        //     Object.create = funciton(o){
+        //         function F(){}
+        //         F.prototype = o
+        //         return new F()
+        //     }
+        // }
     </script>
 </body>
 </html>

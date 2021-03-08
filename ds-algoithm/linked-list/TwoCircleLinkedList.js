@@ -4,7 +4,8 @@
  */
 
 class Node {
-    constructor(element,next){
+    constructor(prev,element,next){
+        this.prev = prev
         this.element = element
         this.next = next
     }
@@ -12,20 +13,20 @@ class Node {
 
 
 /**
- * 单向链表
+ * 双向链表
  */
 
-class SingleCircleLinedList {
+class TwoCircleLinedList {
 
     constructor(){
-        this.first = null // 头部节点
+        this.first = this.last = null // 头部节点
         this.size = 0 // 链表长度
     }
 
     // 清空链表
     clear () {
         this.size = 0
-        this.first = null
+        this.first = this.last = null
     }
 
     // 获取某个节点元素
@@ -40,21 +41,24 @@ class SingleCircleLinedList {
         // 边界问题
         this.rangeCheck(index)
 
-        let current = this.first
-        if(index === 0){ // 删除头部节点
-            if(this.size === 1) { // 当链表只有一个节点的情况
-                this.first = null
-            } else {
-                this.first = current.next
-                this.getNode(this.size - 1).next = this.first
+        let current = this.getNode(index),
+        prev = current.prev,   // 前一个节点 
+        next = current.next   // 后一个节点
+        
+        if(this.size === 1){
+            this.first = this.last = null
+        } else {
+            // prev -> last  next -> 2
+            prev.next = next 
+            next.prev = prev 
+            if(current === this.first){ // 删除头部  index === 0
+                this.first = next  // 后节点成为头节点
             }
-        } else { // 删除中间位置和最后节点
-            // 取当前index的前一个节点
-            let prev = this.getNode(index - 1),
-            current = prev.next // 更新当前节点
-            prev.next = current.next
-        }
 
+            if(current === this.last) { // 删除最后一个 index === this.size-1
+                this.last = prev    
+            }
+        }
         this.size --
 
         return current.element
@@ -74,23 +78,36 @@ class SingleCircleLinedList {
     // 添加节点
     add (element,index) {
         this.rangeCheckForAdd(index)
-        
-        if(index === 0){ // 从头部添加
-            // 拿到最后一个节点
-            const newFirst = new Node(element,this.first)
-            const last = this.size === 0 ? newFirst : this.getNode(this.size - 1)
-            last.next = newFirst
-            this.first = newFirst
-        } else { // 最后追加 和 中间位置添加
-            // const prev = (index === this.size) ? this.getNode(this.size - 1) : this.getNode(index - 1)
-            const prev = this.getNode(index - 1)
-            prev.next = new Node(element,prev.next)
+
+        // size=0,index=0 往后面追加 或者空链表
+        if(index === this.size ){
+            const oldLast = this.last,oldFirst = this.first
+            this.last = new Node(oldLast,element,oldFirst)
+
+            if(oldLast === null){ // 空链表
+                this.first = this.last
+                this.first.prev = this.first
+                this.first.next = this.first
+            } else {
+                oldLast.next = this.last
+                this.first.prev = this.last
+            }
+        } else { // 中间位置和头部
+            const next = this.getNode(index)
+            const prev = next.prev
+            const current = new Node(prev,element,next)
+            next.prev = current
+            prev.next = current
+
+            if(index === 0){ // 头部添加 next === this.first
+                this.first = current
+            }
         }
 
         this.size ++
     }
 
-    // 从后面追加
+    // 尾部追加
     push (element) {
         this.add(element,this.size)
     }
@@ -109,7 +126,7 @@ class SingleCircleLinedList {
     // 查找节点的位置
     indexOf (ele) {
         let current = this.first,i = 0
-        while(current){
+        while(i < this.size){
             if(current.element === ele) return i
             i++
             current = current.next
@@ -135,11 +152,7 @@ class SingleCircleLinedList {
         const res = []
         let current = this.first,i = 0
         while(i < this.size){
-            if(current.next === null){
-                res.push(`${current.element}_${current.next}`)
-            } else {
-                res.push(`${current.element}_${current.next.element}`)
-            }
+            res.push(`${current.prev.element}_${current.element}_${current.next.element}`)
             i++
             current = current.next
         }
@@ -162,7 +175,7 @@ class SingleCircleLinedList {
     }
 }
 
-let testLinked = new SingleCircleLinedList()
+let testLinked = new TwoCircleLinedList()
 testLinked.push(10)
 testLinked.push(20)
 testLinked.push(30)
@@ -172,21 +185,19 @@ testLinked.add(33,2) // [10,20,33,30,40]
 testLinked.add(44,5) // [10,20,33,30,40,44]
 testLinked.add(11,0) // [11,10,20,33,30,40,44]
 testLinked.add(55,3) // [11,10,20,55,33,30,40,44]
-// console.log(testLinked.toArray())
-// console.log(testLinked.size)
+console.log(testLinked.toArray())
+// console.log(testLinked.getNode(0))
 
 // 删除位置节点
-testLinked.remove(0)
-testLinked.remove(2)
+// testLinked.remove(0)
+// testLinked.remove(2)
 // testLinked.remove(6)
-testLinked.remove(5)
-// [ 10, 20, 33, 30, 40 ]
-// [ '10_20', '20_33', '33_30', '30_40', '40_11' ]
+// testLinked.remove(5)
 
 // 删除目标节点
-// console.log(testLinked.removeEle(11))
-// console.log(testLinked.removeEle(44))
-// console.log(testLinked.removeEle(23))
+console.log(testLinked.removeEle(11))
+console.log(testLinked.removeEle(44))
+console.log(testLinked.removeEle(23))
 
 // 获取位置节点
 // console.log(testLinked.get(0),testLinked.get(1),testLinked.get(5))

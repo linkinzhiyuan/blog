@@ -176,6 +176,8 @@ class TwoLinedList {
     }
 }
 
+module.exports = TwoLinedList
+
 let testLinked = new TwoLinedList()
 testLinked.push(10)
 testLinked.push(20)
@@ -212,6 +214,6 @@ testLinked.add(55,3) // [11,10,20,55,33,30,40,44]
 
 
 // testLinked.clear() // 清空
-console.log(testLinked.toArray())
-console.log(testLinked.to_Array())
+// console.log(testLinked.toArray())
+// console.log(testLinked.to_Array())
 // console.log(testLinked.toString())

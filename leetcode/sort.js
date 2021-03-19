@@ -9,18 +9,19 @@ const testSort1 = [92,2,5,4,120,45,1,500,23,100,6,12]
 
 let bubblingSort = function(arr){
     const l = arr.length;
-    for(let i = l - 1,tmp; i > 0;i--){
+    for(let i = l - 1; i > 0;i--){
         for(let j = 0;j < i;j++){
-            tmp = arr[j]
-            if(tmp > arr[j+1]){
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
+            // tmp = arr[j]
+            if(arr[j] > arr[j+1]){ // 前一个值比后面的大，则交换位置 大数向后面排
+                // arr[j] = arr[j+1];
+                // arr[j+1] = arr[j];
+                [arr[j],arr[j+1]] = [arr[j+1],arr[j]]
             }
         }
     }
     return arr
 }
-// console.log('冒泡排序：',bubblingSort(testSort1))
+console.log('冒泡排序：',bubblingSort(testSort1))
 
 // 选择排序 两次循环，第一次依次取值，第二次比较值后面的数，取最小的交换位置
 let selectSort = function(arr){
@@ -28,7 +29,7 @@ let selectSort = function(arr){
     for(let i = 0,min;i < l;i++){
         min = arr[i];
         for(let j = i+1;j < l;j++){
-            if(arr[j] < min){
+            if(arr[j] < arr[i]){ // 后面的数小于前面的数，则交换位置，小数向前移动
                 const c = min;
                 min = arr[j];
                 arr[j] = c;
@@ -38,7 +39,7 @@ let selectSort = function(arr){
     }
     return arr
 }
-// console.log('选择排序：',selectSort(testSort1))
+console.log('选择排序：',selectSort(testSort1))
 
 /**
  * 快速排序 任意取一个数，循环一次大于的放在右边，小于的放在左边，然后递归
@@ -99,7 +100,7 @@ let quickSort1 = function(arr){
     allSort(arr,0,arr.length);
     return arr
 }
-console.log('快速排序：',quickSort1([4,1,2,0,10,9,8]))
+// console.log('快速排序：',quickSort1([4,1,2,0,10,9,8]))
 
 /**
  * 奇偶排序
@@ -254,3 +255,4 @@ let firstMissingPositive1 = function(nums){
 }
 const testNums = [-5,3,4,12,4,6,0,78,45,20];
 // console.log('缺少第一个正数：',firstMissingPositive1(testNums))
+

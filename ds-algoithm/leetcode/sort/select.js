@@ -1,6 +1,6 @@
 /**
  * 选择排序
- * 两次循环，第一次依次取值，第二次比较值后面的数，取最小的交换位置
+ * 两次循环，第一次把开始的当做最小值，第二次循环后面的值依次作比较，如果有比最小值小的记录下来，最后交换位置
  * @param {*} arr 
  */
 
@@ -9,7 +9,7 @@ let selectSort = function(arr){
     for(let i = 0,min;i < l;i++){
         min = arr[i];
         for(let j = i+1;j < l;j++){
-            if(arr[j] < arr[i]){ // 后面的数小于前面的数，则交换位置，小数向前移动
+            if(arr[j] < min){ // 后面的数小于前面的数，则交换位置，小数向前移动
                 const c = min;
                 min = arr[j];
                 arr[j] = c;
@@ -20,8 +20,23 @@ let selectSort = function(arr){
     return arr
 }
 
-// const testSort1 = [92,2,5,4,120,45,1,500,23,100,6,12]
-// console.log('选择排序：',selectSort(testSort1))
+const selectSort2 = function(arr){
+    const l = arr.length
+    let tmp = 0
+    for(let i = 0; i < l; i++){
+        tmp = i
+        for(let j = i + 1; j < l; j++){
+            if(arr[j] < arr[tmp]){
+                tmp = j
+            }
+        }
+        tmp !== i && ([arr[i],arr[tmp]] = [arr[tmp],arr[i]])
+    }
+    return arr
+}
+
+const testSort1 = [92,2,5,5,5,4,120,45,1,500,23,100,6,12,0,-2,59]
+console.log('选择排序：',selectSort2(testSort1))
 
 
 /**

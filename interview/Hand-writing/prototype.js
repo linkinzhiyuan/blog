@@ -104,18 +104,13 @@ M.prototype.say = function(){
     console.log('say')
 }
 // 模拟new运算符的过程
-const newFun = function(F){
-    const o = Object.create(F.prototype);
-    //转化this执行上下文
-    const k = F.apply(o);
-    // console.log('k',k)
-    // console.log('o',o)
-    if(typeof k === 'object'){
-        return k
-    }else{
-        return o
-    }
+function _new(){
+    const constructor = Array.prototype.shift.call(arguments)
+    const obj = Object.create(constructo.prototype)
+    const result = constructor.apply(obj,arguments)
+    return typeof result === 'object' ? result || obj : obj
 }
+
 
 // Object.create的polyfill
 // if(!Object.create){

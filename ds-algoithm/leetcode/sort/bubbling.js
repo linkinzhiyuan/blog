@@ -22,7 +22,6 @@ let bubblingSort = function(arr){
 const testSort1 = [92,2,5,4,120,45,1,500,23,100,6,12]
 console.log(bubblingSort(testSort1))
 
-
 /**
  * 数组中的第K个最大元素
  * @param {Array} nums

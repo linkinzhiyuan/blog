@@ -21,6 +21,25 @@ let quickSort = function(arr){
     }
     return quickFn(arr);
 }
+
+
+let quickarr = function(a){
+    const fn = arr => {
+        const len = arr.length
+        if(len < 2){
+            return arr
+        } else {
+            let center = arr[0],left = [],right = []
+            arr.slice(1).forEach(item => {
+                item > center ? right.push(item) : left.push(item)
+            })
+            return fn(left).concat(center,fn(right))
+        }
+    }
+    return fn(a)
+}
+
+
 /**
  * 快速排序优化解：in-place算法 让内存不再增加，利用交换 不会造成递归内存增加
  * 筛选出比目标元素小的在左边，然后目标元素和左边的最后一位交换位置，从而达到目标元素左边全是比他小的右边全是比他大的
@@ -59,4 +78,4 @@ let quickSort1 = function(arr){
 }
 const testSort1 = [92,2,5,4,120,45,1,500,23,100,6,12]
 
-console.log('快速排序：',quickSort1(testSort1))
+console.log('快速排序：',quickarr(testSort1))

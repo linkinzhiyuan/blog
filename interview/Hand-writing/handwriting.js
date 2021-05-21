@@ -3,7 +3,7 @@
  * 对象类型object,function,Array、RegExp、Math、Map、Set,Date全部归为object
  * typeof: 只能判断undefiend,number,string,boolean,symbol,function,其他全部归为object
  * instanceof: 内部通过原型链的方式来判断是否为构建函数的实例，常用于判断具体的对象类型,比较一个对象是否为某一个构造函数的实例
- * Object.prototype.toString()
+ * Object.prototype.toString.call()
  * Array.isArray(),Number.isNaN()
  */
 
@@ -11,7 +11,7 @@ function newTypeof(obj) {
     let res = Object.prototype.toString.call(obj).split(' ')[1] // [object Number] -> Number]
     return res.substring(0,res.length-1).toLowerCase()  //  Number] -> number
 }
-console.log(newTypeof(null),newTypeof('2222'),newTypeof(new Date),newTypeof(function(){}),newTypeof([]))
+// console.log(newTypeof(null),newTypeof('2222'),newTypeof(new Date),newTypeof(function(){}),newTypeof([]))
 
 function myInstanceof(left,right){ 
     // 如果是基础类型直接返回false 
@@ -115,206 +115,117 @@ function flatten(arr){
 // console.log(flatten([1,[2,3,[4,5],[6,7,[19,20]],8]]))
 
 
-// 伴鱼
-
-// 1.输出顺序
-// console.log(1);
-// setTimeout(() => {
-//   console.log(2);
-//   Promise.resolve().then(data => {
-//     console.log(3);
-//   });
-// });
-// new Promise((resolve) => {
-//   resolve()
-//   console.log(4)
-// }).then(() => {
-//   console.log(5);
-//   setTimeout(() => {
-//     console.log(6);
-//   });
-// }).then(() => console.log(7))
-// console.log(8);
-
-//输出 1 4 8 5 7 2 3 6  
-
-
-// 2.打印出的内容
-console.log(fish1,fish2,fish3);
-// undefined undefined undefined   
-var fish1 = function(){
-  console.log('welcome to Palfish-1')
-}
-
-var fish1,fish2,fish3;
-
-function fish2(){
-  console.log('welcome to Palfish-2')
-}
-var fish3 = 'welcome to Palfish-3'
-var fish1,fish2,fish3;
-console.log(fish1,fish2,fish3);    
-// f1() f2() 'welcome to Palfish-3'
-
-
-// 3.代码输出
-var nickname = "LiLei";
-function Person(name){
-  this.nickname = name;
-  this.sayHi = function() {
-    console.log(this.nickname);
-    setTimeout(function(){
-      console.log(this.nickname);
-    }, 1000);
-  }
-}
-var Male = {
-  nickname: 'xiaofang',
-  sayHi: () => {
-    console.log(this.nickname);
-  }
-}
-var person = new (Person.bind(Male, 'XiaoHong'))();   
-person.sayHi(); // ==> XiaoHong LiLei
-
-
-
-
-// 4.代码输出
-let object = {a:0};
-function fun(obj) {
-    obj.a=1;
-    obj={a:2};
-    obj.b=2;
-}
-fun(object);
-console.log(object);  // ==> 输出：{a:1}
- 
-// 5.实现一个LazyMan，可以按照以下方式调用:
-// LazyMan(“Hank”)输出:
-// Hi! This is Hank!
-
-// LazyMan(“Hank”).sleep(10).eat(“dinner”)输出
-// Hi! This is Hank!
-// //等待10秒..
-// Wake up after 10
-// Eat dinner~
-
-// LazyMan(“Hank”).eat(“dinner”).eat(“supper”)输出
-// Hi This is Hank!
-// Eat dinner~
-// Eat supper~
-
-// 以此类推。
-
-// 6.找出二叉树中某两个节点的第一个共同祖先，不得将其他的节点存储在另外的数据结构中。
-
-// 3
-// / \
-// 5   1
-// / \ / \
-// 6  2 0  8
-// / \
-// 7   4
-// 示例 1:
-// 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
-// 输出: 3
-// 解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
-
-// 所有节点的值都是唯一的
-// p、q 为不同节点且均存在于给定的二叉树中。
-// 二叉树数据结构:
-// function TreeNode(val) {
-//     this.val = val;
-//     this.left = this.right = null;
-//   }
-// your code here:
-
-
-// 7.实现一个流程控制函数，使得若干任务按照顺序执行，且每个任务的返回结果都讲传给下一个任务。
-// 如果中途出错，后面的任务则不会执行，并返回当前执行的结果
 /**
- * 
- * @param {*} tasks Array 一组要运行的异步函数，每个函数可接受若干参和一个callback函数，每个函数的执行结构都会传递给下一个函数
- * @param {*} callback function 回调函数，参数列表（err,[results]）,返回最后执行任务完毕的结果
+ * new 
+ * 1、新建一个空对象，obj.__proto__ === 构造函数的prototype
+ * 2、执行构造函数，改变this的指向，看看是否存在返回值
+ * return 构造函数有返回值对象 优先返回，如果是字符串 则返回空对象；没有返回值则返回开头新建的对象
  */
-function waterfall(tasks,[callback]){
+// function _new() {
+//   const constructor = [].shift.call(arguments);
+//   let obj = Object.create(constructor.prototype)
+//   let result = constructor.apply(obj, arguments);
+//   console.log(obj,result)
+//   // ret || obj 这里这么写考虑了构造函数显示返回 null 的情况
+//   return typeof result === 'object' ? result || obj : obj;
+// };
 
+function _new(){
+  const constructor = Array.prototype.shift.call(arguments)
+  const obj = Object.create(constructor.prototype)
+  const result = constructor.apply(obj,arguments)
+  return typeof result === 'object' ? result || obj : obj
+}
+function Person(name, age) {
+  this.name = name
+  this.age = age
+  // return {} / '12312'
+}
+// let p = _new(Person, '布兰', 12)
+// console.log(p)  // { name: '布兰', age: 12 }
+
+
+/**
+ * Object.create()
+ * 接收一个对象作为参数，以它为原型，返回一个实例对象，该实例完全继承原型对象的属性
+ */
+if(typeof Object.create !== 'function'){
+  Object.create = function(obj){
+    function Fn(){}
+    Fn.prototype = obj
+    return new Fn()
+  }
 }
 
-// eg:waterfall(
-//     [
-//         function(callback){
-//             callback(null,'one','two')
-//         },
-//         function (arg1,arg2,callback) {
-//             // arg1 now equals 'one' and arg2 now equals 'two'
-//             callback(null,'three')
-//             // callback('err'.'three'); => 结果：‘err’,'three'
-//         },
-//         function(arg1,callback){
-//             // arg1 now equals 'three'
-//             callback(null,'done')
-//         }
-//     ],
-//     function(err,results){
-//         // results now equals 'done'
-//     }
-// )
-
-// 8.两数之和 可以假设每种输入只会对应一个答案，但是 数组中同一个元素不能使用两遍
-
-
-
-// 好未来
-// 1.typeof []
-// typeof function () {}
-
-// 2.实现tokenize 输入只包含有效的非负整数 + - * / () 和空格，忽略空格，方法返回Generator对象
-// const tokens = tokenize('1*(30 - 300)')
-// for(let token of tokens){
-//     console.log(token) // '1','*','(','30','-','300',')'
-// }
-// function tokenize(params) {
-    
-// }
-
-// 3.实现Array.prototype.map
-
-// 4.反转二叉树 
-
-// type Node = null | {
-//     value:Number
-//     left:Node
-//     right:Node
-// }
-function invert(node) {
-    
+/**
+ * call,apply,bind
+ */
+Function.prototype.call2 = function(target,...args){
+  if( typeof this !== 'function'){
+    throw new Error('this is not a function')
+  }
+  const context = target || window
+  context.fn = this
+  const result = context.fn(...args)
+  delete context.fn
+  return result
 }
 
-// str 'o' 'x'的数量是否一样
-function XO(str){
-    let a = 0,o = 0
-    for(let i = 0;i<str.length;i++){
-        if(str[i].toLowerCase() === 'o') a++
-        if(str[i].toLowerCase() === 'x') o++
-    }
-    return a === o
-    // const xa = str.split('').filter(item => item.toLowerCase() === 'x')
-    // const oa = str.split('').filter(item => item.toLowerCase() === 'o')
-    // console.log(xa,oa)
-    // return oa.length === xa.length
+Function.prototype.apply2 = function(target,arr){
+  if(typeof this !== 'function'){
+    throw new Error('this is not a function')
+  }
+  if(!Array.isArray(arr)){
+    throw new Error('arr not an array')
+  }
+  const context = target || window
+  context.fn = this
+  const result = context.fn(...arr)
+  delete context.fn
+  return result
 }
 
-// console.log(XO('ooxx'))
-// console.log(XO('oxoxoxx'))
-// console.log(XO('ozpzpz'))
+/**
+ * bind2
+ * 除了this之外，还可以传入多个参数
+ * bind创建的新函数可以传入多个参数
+ * 新函数可能被当做构造函数调用
+ * 函数有可能有返回值
+ * @param {*} target 
+ * @param  {...any} args 
+ */
+Function.prototype.bind2 = function(target){
+  if( typeof this !== 'function'){
+    throw new Error('this is not a function')
+  }
+  const args = [].slice.call(arguments,1) // 原函数的参数
+  const self = this
+  const fn = function(){} // 构建一个新的函数，保存原函数的原型
+  let bound = function(){ // 绑定函数
+    // this instanceof fn 判断是否使用new调用bound
+    // new 调用的话 this的指向是实例
+    // 不是new 调用的话，改变this指向指定的对象target
+    return self.apply(
+      this instanceof fn ? this : target,
+      args.concat([].slice.call(arguments)) // 新函数的参数
+    )
+  }
+  // 箭头函数没有prototype this永远指向当前所在的作用域
+  if(this.prototype){
+    fn.prototype = this.prototype
+  }
+  // 修改绑定函数的原型指向
+  bound.prototype = new fn()
+  return bound
+}
 
-// 职位规划：时间 目的 方法 实现手段
-
-// 简历三突出原则：主要项目最能改变成绩 0-1的项目   项目突出主要成绩
-
-// 逻辑感，怎么做的顺序，你做出的成绩
-
-// 面试强输出的过程，展示优势
+let obj = { name: 123 }
+function foo(x,y,z) {
+  console.log(this.name, arguments)
+  console.log(x,y,z)
+}
+// foo.call2(obj, '111', '222','333')
+// foo.apply2(obj, [1,2,3])
+const s = foo.bind2(obj,'111','222')
+s(222)
 

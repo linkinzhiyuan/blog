@@ -23,16 +23,15 @@
 
 const PromiseAll = (params) => {
     return new Promise((resolve,reject) => {
-        let len = params.length,index = 0,res = []
+        let len = params.length,res = []
         if(!len) {
             resolve(res)
             return;
         }
         Array.from(params).forEach((ele,i) => {
             Promise.resolve(ele).then(data => {
-                res[i] = data
-                index ++
-                index === len && resolve(res)
+                res.push(data)
+                res.length === len && resolve(res)
             }).catch(err => {
                 reject(err)
             })

@@ -82,6 +82,48 @@ function unique(arr){
 // console.log('unique',unique([1,2,1,2,3,4,5,2,3]))
 
 
+// 数组元素是对象 根据键值去重
+const objUniq = (arr, key) => {
+
+  // var result = [],obj = {};
+  // for (var i = 0; i < arr.length; i++) {
+  //   if (!obj[arr[i].key]) {
+  //     result.push(arr[i]);
+  //     obj[arr[i].key] = true;
+  //   }
+  // }
+
+  // var result = [];
+  // for (var i = 0; i < arr.length; i++) {
+  //   var flag = true;
+  //   for (var j = 0; j < result.length; j++) {
+  //     if (arr[i].key === result[j].key) {
+  //       flag = false;
+  //     }
+  //   }
+  //   if (flag) {
+  //     result.push(arr[i]);
+  //   }
+  // }
+  
+  // for (var i = 0; i < arr.length; i++) {
+  //   for (var j = i + 1; j < arr.length; j++) {
+  //     if (arr[i].key === arr[j].key) {
+  //       arr.splice(j, 1);
+  //       j = j - 1;
+  //     }
+  //   }
+  // }
+
+  var obj = {};
+  arr = arr.reduce(function (item, next) {
+    obj[next[key]] ? '' : obj[next[key]] = true && item.push(next);
+    return item;
+  }, []);
+  return arr
+}
+
+
 /**
  * 数组扁平化
  * ES5实现 递归
@@ -219,13 +261,64 @@ Function.prototype.bind2 = function(target){
   return bound
 }
 
-let obj = { name: 123 }
+// let obj = { name: 123 }
 function foo(x,y,z) {
   console.log(this.name, arguments)
   console.log(x,y,z)
 }
 // foo.call2(obj, '111', '222','333')
 // foo.apply2(obj, [1,2,3])
-const s = foo.bind2(obj,'111','222')
-s(222)
+// const s = foo.bind2(obj,'111','222')
+// s(222)
+
+
+
+const p = new Promise((resolve,reject)=>{
+  // console.log('2222')
+  // resolve('hello')
+  return 'promise'
+})
+
+// p.then(res => {
+//   console.log(res + 'then')
+// })
+
+// console.log(p)
+
+function curry(fn){
+  let judge = (...args) => {
+    if(args.length === fn.length) return fn(...args)
+    return (...arg) => judge(...args,...arg)
+  }
+  return judge
+}
+
+
+
+var name = 'window'
+let obj = {
+  name:'obj',
+  props:{
+    name:'props',
+    getName:function(){
+      setTimeout(function(){
+        console.log('settime:',this.name)
+      },0)
+      return this.name
+    }
+  }
+}
+
+// console.log(obj.props.getName())
+
+// let fn = obj.props.getName
+// console.log(fn())
+for (let index = 0; index < 10; index++) {
+  console.log(index)
+  for (let j = 10; j < 20; j++) {
+    console.log(j)
+    if(index === 6 && j === 15) continue
+  }
+  
+}
 

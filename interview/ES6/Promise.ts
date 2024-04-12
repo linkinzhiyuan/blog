@@ -13,6 +13,104 @@
  * Promise.try()
  */
 
+/**
+ * MyPromise
+ */
+
+enum StateEnum {
+    PENDING = 'pending',
+    FULFILLED = 'fulfilled',
+    REJECTED = 'rejected'
+}
+class MyPromise {
+    // 状态
+    state: StateEnum = StateEnum.PENDING // pending fulfilled rejected
+    value = '' // 成功后的值
+    reason = '' // 错误的原因
+
+    resolveCallback: (()=>void)[] = []
+    rejectCallback:(()=>void)[] = []
+
+    constructor(fn){
+        const resolveHandle = (value) => {
+            if(this.state === StateEnum.PENDING){
+                this.state = StateEnum.FULFILLED
+                this.value = value;
+                this.resolveCallback.forEach(fn=> fn(value))
+            }
+        }
+        const rejectHandle = (reason) => {
+            if(this.state === StateEnum.PENDING){
+                this.state = StateEnum.REJECTED
+                this.reason = reason
+                this.rejectCallback.forEach(fn=> fn(reason))
+            }
+        }
+        // 执行 fn
+        try {
+            fn(resolveHandle,rejectHandle)
+        } catch (error) {
+            rejectHandle(error)
+        }
+    }
+
+    then(fn1,fn2){
+        // 有三种的不同的状态下的不同处理，都会返回一个新的promise
+        fn1 = typeof fn1 === 'function' ? fn1 : (v) => v;
+        fn2 = typeof fn2 === 'function' ? fn2 : (v) => v;
+
+
+        if(this.state === StateEnum.PENDING){
+            return new MyPromise((resolve,reject) => {
+                this.resolveCallback.push(()=>{
+                    try {
+                        const newValue = fn1(this.value)
+                        resolve(newValue)
+                    } catch (err) {
+                        reject(err)
+                    }
+                })
+
+                this.rejectCallback.push(()=>{
+                    try {
+                        const newReason = fn2(this.reason)
+                        resolve(newReason)
+                    } catch (err) {
+                        reject(err)
+                    }
+                })
+            })
+        }
+
+        if(this.state === StateEnum.FULFILLED){
+            return new MyPromise((resolve,reject) => {
+                try {
+                    const newValue = fn1(this.value)
+                    resolve(newValue)
+                } catch (error) {
+                    reject(error)
+                }
+            })
+        }
+
+        if(this.state === StateEnum.REJECTED){
+            return new MyPromise((resolve,reject) => {
+                try {
+                    const newReason = fn1(this.reason)
+                    resolve(newReason)
+                } catch (error) {
+                    reject(error)
+                }
+            })
+        }
+
+    }
+
+    // 是 then 方法的一个语法糖
+    catch(fn) {
+        return this.then(null,fn)
+    }
+}
 
 
 /**
@@ -28,7 +126,7 @@ const PromiseAll = (params) => {
             resolve(res)
             return;
         }
-        Array.from(params).forEach((ele,i) => {
+        Array.from(params).forEach((ele) => {
             Promise.resolve(ele).then(data => {
                 res.push(data)
                 res.length === len && resolve(res)

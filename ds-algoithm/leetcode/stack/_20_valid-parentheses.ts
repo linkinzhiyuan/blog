@@ -2,13 +2,13 @@
  * 有效的括号
  * https://leetcode-cn.com/problems/valid-parentheses/
 */
-const isValid = function(s) {
+export const isValid = function(s: string) {
     // 栈 数据结构
     // 1.是否能被2整除，单数的false
     // 2.遇到left的入栈，遇到right出栈，判断是否匹配一直，一直则继续，否则返回false
     // 3.栈内为空则true，否则false
     const left = ['(','[','{'],right = [')',']','}']
-    const len = s.length,stack = []
+    const len = s.length,stack:string[] = []
     if(len % 2 !== 0) return false
     for(let i = 0;i < len;i++){
         if(left.indexOf(s[i]) > -1){
@@ -19,11 +19,9 @@ const isValid = function(s) {
             if(s[i] === '}' && stack.pop() !== '{') return false 
         }     
     }
-    console.log('stack',stack)
     return !(stack.length > 0)
 };
-
-const isValid2 = (s) => {
+export const isValid2 = (s:string) => {
     while(s.indexOf('()') > -1 || s.indexOf('[]') > -1 || s.indexOf('{}') > -1){
         s = s.replace('()','')
         s = s.replace('[]','')
@@ -32,8 +30,8 @@ const isValid2 = (s) => {
     return !(s.length > 0)
 }
 
-const isValid3 = (s) => {
-    let arr = []
+export const isValid3 = (s: string) => {
+    let arr: string[] = []
     let len = s.length
     if (len%2) return false
     for (let i = 0; i < len; i++) {
@@ -72,8 +70,8 @@ const isValid3 = (s) => {
  * @param {string} s
  * @return {boolean}
  */
-const isValid4 = function (s) {
-    const stack = [],map = new Map()
+export const isValid4 = function (s:string) {
+    const stack:string[] = [],map = new Map()
     map.set("(", ")")
     map.set("[", "]")
     map.set("{", "}")
@@ -87,13 +85,3 @@ const isValid4 = function (s) {
     return !stack.length
 };
 
-console.log(isValid('()'))
-console.log(isValid('()[]{}'))
-console.log(isValid('(]'))
-console.log(isValid('([)]'))
-console.log(isValid('{[]}'))
-console.log(isValid2('()'))
-console.log(isValid2('()[]{}'))
-console.log(isValid2('(]'))
-console.log(isValid2('([)]'))
-console.log(isValid2('{[]}'))

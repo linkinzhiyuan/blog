@@ -99,6 +99,55 @@ console.log(bar.a); // 4
 // console.log(baa)
 // console.log(obj4)
 
+
+const obj = {
+    fn1(){
+        console.log("this1",this) // obj
+        const fn = () => {console.log("this1",this)}
+        fn()  // obj
+        fn.call(this) // obj call 无效
+    },
+    fn2: () => {
+        console.log('this2',this) // window
+        function fn (){console.log("this2",this)}
+        fn() // window
+        fn.call(this) // window
+    },
+    fn3(){
+        console.log('this3',this) // obj
+        function fn (){console.log("this3",this)}
+        fn() // window
+        fn.call(this) // obj
+    }
+}
+
+obj.fn1();
+obj.fn2();
+obj.fn3();
+
+function fn3(){
+    console.log('this3',this) // window
+    function fn (){console.log("this3",this)}
+    fn() // window
+    fn.call(this) // window
+}
+
+fn3()
+
+
+class Foo {
+    f1(){console.log('this1',this)}
+    f2 = () => console.log('this2',this)
+    f3 = () => console.log('this3',this)
+    static f4() { console.log('this4',this)}
+}
+
+const f = new Foo()
+f.f1(); // f
+f.f2(); // f
+f.f3.call(this) // f
+Foo.f4() // Foo
+
 /**
  * 判断this
  * 1.函数是否在new中调用，如果是的话绑定的就是新创建的对象

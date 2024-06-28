@@ -34,3 +34,4 @@ input1.addEventListener('keyup', debounce(function (e) {
     console.log(e.target)
     console.log(input1.value)
 }, 600))
+

@@ -33,6 +33,8 @@
  * 思路：快慢指针求两个数的最大差
  * @param {number[]} prices
  * @return {number}
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
  */
 export const maxProfit = function(prices: number[]): number {
   let max = 0, slow = 0, fast = 1;
@@ -44,5 +46,25 @@ export const maxProfit = function(prices: number[]): number {
   }
   return max > 0 ? max : 0
 };
+
+/**
+ * 动态规划，存储最小值，每次更新最大利润
+ * @param prices 
+ * @returns 
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ */
+export const maxProfitDynamic = function(prices: number[]): number {
+  let minPrice = prices[0];
+  let maxProfit = 0
+  for(let i =0; i < prices.length; i++){
+    if(prices[i] < minPrice){
+      minPrice = prices[i]
+    } else if(prices[i] - minPrice > maxProfit){
+      maxProfit = prices[i] - minPrice
+    }
+  }
+  return maxProfit
+}
 // @lc code=end
 

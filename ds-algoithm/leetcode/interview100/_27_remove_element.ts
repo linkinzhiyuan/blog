@@ -70,5 +70,3 @@ export const removeElementFastSlowRefactor  = function(nums:number[],val:number)
   }
   return left;
 }
-
-console.log(removeElementFastSlowRefactor([3,3],3))

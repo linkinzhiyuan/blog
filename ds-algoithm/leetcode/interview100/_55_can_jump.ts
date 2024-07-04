@@ -58,6 +58,9 @@ export const canJump = function(nums: number[]): boolean {
  * 贪心算法：遍历数组，记录当前位置可以到达的最远距离，如果当前位置可以到达的最远距离大于数组长度，返回 true，否则返回 false
  * @param nums 
  * @returns 
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ * eg: [2, 3, 1, 1, 4] [3, 2, 1, 0, 4]
  */
 export const  canJump2 = function(nums: number[]): boolean {
   const len = nums.length;
@@ -71,6 +74,9 @@ export const  canJump2 = function(nums: number[]): boolean {
 
 /**
  * 动态规划：遍历数组，记录当前位置可以到达的最远距离，如果当前位置可以到达的最远距离大于数组长度，返回 true，否则返回 false
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ * eg: [2, 3, 1, 1, 4] [3, 2, 1, 0, 4]
  */
 
 export const canJumpDp = function(nums: number[]): boolean {

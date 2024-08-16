@@ -84,7 +84,7 @@ export const hIndex = function(citations: number[]): number {
 };
 
 /**
- * 利用二分查找
+ * 利用二分查找，找索引值
  * @param citations
  * @returns numbers
  * 时间复杂度：O(logn)

@@ -1,4 +1,4 @@
-import { productExceptSelf, productExceptSelf2 } from './_238_.product_except_self'
+import { productExceptSelf, productExceptSelf2 } from './_238_product_except_self'
 
 describe('238. 除自身以外数组的乘积', () => {
   it('正常情况 [1,2,3,4]', () => {  

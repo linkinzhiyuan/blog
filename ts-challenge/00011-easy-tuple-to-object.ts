@@ -24,6 +24,10 @@ type error = TupleToObject<[[1, 2], {}]>
  * 返回一个对象
  * 遍历T数组
  */
-type TupleToObject<T extends readonly (string | number | symbol)[]> = {
+// type TupleToObject<T extends readonly (string | number | symbol)[]> = {
+//   [P in T[number]]: P
+// }
+
+type TupleToObject<T extends readonly (keyof any)[]> = {
   [P in T[number]]: P
 }

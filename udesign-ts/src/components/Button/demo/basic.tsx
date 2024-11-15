@@ -3,7 +3,7 @@ import Button from '../index';
 
 const App: React.FC = () => (
   <>
-    <Button type="primary">Primary Button</Button>
+    <Button type="primary" size='large'>Primary Button</Button>
     <Button>Default Button</Button>
     <Button type="dashed">Dashed Button</Button>
     <Button type="text">Text Button</Button>

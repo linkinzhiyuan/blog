@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+@import url('./components/react-flow/xy-theme.css');
+ 
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+ 
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+#mindMapContainer * {
+  margin: 0;
+  padding: 0;
+}

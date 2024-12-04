@@ -64,4 +64,4 @@ class Demo extends React.Component {
   }
 }
 
-export { Demo }
+export { Demo };

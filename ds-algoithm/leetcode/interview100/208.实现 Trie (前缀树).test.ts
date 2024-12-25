@@ -48,16 +48,11 @@
  * trie.insert("app");
  * trie.search("app");     // 返回 True
  * 
- * 
- * 
- * 
  * 提示：
- * 
  * 
  * 1 <= word.length, prefix.length <= 2000
  * word 和 prefix 仅由小写英文字母组成
  * insert、search 和 startsWith 调用次数 总计 不超过 3 * 10^4 次
- * 
  * 
  */
 
@@ -66,23 +61,150 @@
 
 // @lcpr-template-end
 // @lc code=start
+class TrieNode {
+    isEnd: boolean;
+    children: Map<string, TrieNode>;
+    constructor(){
+        this.isEnd = false;
+        this.children = new Map();
+    }
+}
 class Trie {
+    root: TrieNode;
     constructor() {
-        
+        this.root = new TrieNode();
     }
 
     insert(word: string): void {
-        
+        let node = this.root;
+        for(const char of word){
+            if(!node.children.has(char)){
+                node.children.set(char, new TrieNode());
+            }
+            node = node.children.get(char)!
+        }
+        node.isEnd = true;
     }
 
     search(word: string): boolean {
-        
+        let node = this.root;
+        for(const char of word){
+            if(!node.children.has(char)){
+                return false
+            }
+            node = node.children.get(char)!
+        }
+        return node.isEnd
     }
 
     startsWith(prefix: string): boolean {
-        
+        let node = this.root;
+        for(const char of prefix){
+            if(!node.children.has(char)){
+                return false
+            }
+            node = node.children.get(char)!
+        }
+        return true
     }
 }
+
+
+// 字典树存储方式, 通过数组存储
+class TrieArrayNode {
+    children: (TrieArrayNode | null)[];
+    isEnd: boolean;
+    constructor() {
+        this.children = new Array(26).fill(null);
+        this.isEnd = false;
+    }
+}
+class TrieArray {
+    root: TrieArrayNode;
+
+    constructor() {
+        this.root = new TrieArrayNode();
+    }
+
+    insert(word: string): void {
+        let node = this.root;
+        for(const char of word) {
+            const index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+            if(!node.children[index]){
+                node.children[index] = new TrieArrayNode();
+            }
+            node = node.children[index]!;
+        }
+        node.isEnd = true;
+        console.log(this.root);
+    }
+
+    search(word: string): boolean {
+        let node = this.root;
+        for(const char of word) {
+            const index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+            if(!node.children[index]){
+                return false;
+            }
+            node = node.children[index]!;
+        }
+        return node.isEnd;
+    }
+
+    startsWith(prefix: string): boolean {
+        let node = this.root;
+        for(const char of prefix) {
+            const index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+            if(!node.children[index]){
+                return false;
+            }
+            node = node.children[index]!;
+        }
+        return true;
+    }
+}
+
+// 哈希表存储方式
+describe('TrieArray', () => {
+    let trie: TrieArray;
+
+    beforeEach(() => {
+        trie = new TrieArray();
+    });
+
+    test('should insert and search words correctly', () => {
+        trie.insert('apple');
+        expect(trie.search('apple')).toBe(true); // returns true
+        expect(trie.search('app')).toBe(false);  // returns false
+        expect(trie.startsWith('app')).toBe(true); // returns true
+        trie.insert('app');
+        expect(trie.search('app')).toBe(true); // returns true
+    });
+
+    test('should handle words with common prefixes', () => {
+        trie.insert('apple');
+        trie.insert('app');
+        trie.insert('apricot');
+        expect(trie.search('apple')).toBe(true);
+        expect(trie.search('app')).toBe(true);
+        expect(trie.search('apricot')).toBe(true);
+        expect(trie.startsWith('ap')).toBe(true);
+        expect(trie.startsWith('apr')).toBe(true);
+        expect(trie.startsWith('apple')).toBe(true);
+        expect(trie.startsWith('apples')).toBe(false);
+    });
+
+    test('should return false for non-existent words', () => {
+        expect(trie.search('banana')).toBe(false);
+        expect(trie.startsWith('ban')).toBe(false);
+    });
+
+    test('should handle empty string', () => {
+        trie.insert('');
+        expect(trie.search('')).toBe(true);
+        expect(trie.startsWith('')).toBe(true);
+    });
+});
 
 /**
  * Your Trie object will be instantiated and called as such:

@@ -1,0 +1,157 @@
+# 获取人员信息
+curl 'https://cloud.italent.cn/api/v2/UI/TableList?viewName=TenantBase.SingleObjectListView.InServiceEmployeeInformationList&metaObjName=TenantBase.EmployeeInformation&r_from=EmpInfo&navType=2&app=TenantBase&PaaS-SourceApp=TenantBase&PaaS-CurrentView=TenantBase.InServiceEmployeeNavView&shadow_context=%7BappModel%3A%22italent%22%2Cuppid%3A%22%22%7D&_qsrcapp=tenantbase&quark_s=fc38965fd9856a9f3a617dac5ba4cea5f8962bd790ea89b6cbf63beb4e6f7c62' \
+  -H 'Accept: application/json, application/xml, text/play, text/html, */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -b 'iTalent-tenantId=; 00000000-0000-0000-0000-000000000000.widgetState=false; isItalentLogin=; user_polling_timespace_110088=0; Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; ssn_Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; italentLoginSync=1749521879213; key-128514306=true' \
+  -H 'Origin: https://www.italent.cn' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://www.italent.cn/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'X-Sourced-By: ajax' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --data-raw '{"table_data":{"advance":{"cmp_render":{"viewPath":"PureTable","status":"enable"}},"hasCheckColumn":true,"ext_data":{"ListViewLabel":"在职员工列表"},"isEnableGlobleCheck":false,"hasRowHandler":true,"paging":{"total":2396,"capacity":300,"page":0,"capacityList":[15,30,60,100,300]},"isAvatars":true,"viewName":"TenantBase.SingleObjectListView.InServiceEmployeeInformationList","operateColumWidth":140,"extendsParam":"","isSyncRowHandler":false,"isFrozenOperationColumnHandler":false,"isCustomListViewExisted":true,"getTreeNodeUrl":null,"sort_fields":[{"sort_column":"OrderCode","sort_dir":"asc"}],"description":"在职员工列表，以员工基本信息为主对象","metaObjName":"TenantBase.EmployeeInformation","isCustomListView":true,"navViewIsCustom":false,"navViewName":"TenantBase.InServiceEmployeeNavView","navViewVersion":"20190805135007764"},"search_data":{"metaObjName":"TenantBase.EmployeeInformation","searchView":"TenantBase.InServiceEmployeeSearchView","items":[{"name":"TenantBase.EmployeeInformation.ApprovalStatus","text":"生效","value":"4","num":"10","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmployeeInformation.StdIsDeleted","text":"是","value":"1","num":"11","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"\\59ea2c79-d1c7-44dc-b188-a25ecfdebde0~TenantBase.EmploymentRecord.EmployeeStatus","text":"试用, 正式","value":"2,3","num":"12","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"\\59ea2c79-d1c7-44dc-b188-a25ecfdebde0~TenantBase.EmploymentRecord.EmployType","text":"内部员工, 实习生","value":"0,2","num":"13","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.StdIsDeleted","text":"是","value":"1","num":"14","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.IsCurrentRecord","text":"是","value":"1","num":"15","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.ServiceType","text":"主职","value":"0","num":"16","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.ApprovalStatus","text":"生效","value":"4","num":"17","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false}],"searchFormFilterJson":null}}'
+
+  ### 下载接口
+  curl 'https://cloud.italent.cn/api/v2/UI/ExportAttach?app=TenantBase&metaObjName=TenantBase.EmployeeInformation&viewName=TenantBase.SingleObjectListView.InServiceEmployeeInformationList&exportName=extxiazaozhaop&attachColumnName=extbyz_110088_1670906579&attachColumnText=%E6%AF%95%E4%B8%9A%E8%AF%81%E4%B9%A6&btnCode_sa=extxiazaozhaop&btnMetaObjectName_sa=TenantBase.EmployeeInformation&shadow_context=%7BappModel%3A%22italent%22%2Cuppid%3A%22%22%7D&_qsrcapp=tenantbase&quark_s=a3e6ee79f17ee8e934bc786453c23ae15fe196bee59bac15bb82c6b1b953e337' \
+  -H 'Accept: application/json, application/xml, text/play, text/html, */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -b 'iTalent-tenantId=; 00000000-0000-0000-0000-000000000000.widgetState=false; isItalentLogin=; Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; ssn_Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; italentLoginSync=1749521879213; key-128514306=true' \
+  -H 'Origin: https://cloud.italent.cn' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://cloud.italent.cn/TenantBase?_qsrcapp=tenantbase&_qrt=html&quark_s=32fd05a204f01683939f9da3c83019d5424fd8a2a70a27862e69f9794f0b2d9c' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'X-Sourced-By: ajax' \
+  -H 'fal: %E4%B8%8B%E8%BD%BD%E9%99%84%E4%BB%B6' \
+  -H 'fan: extxiazaozhaop' \
+  -H 'fapp: TenantBase' \
+  -H 'fpl: %E5%9C%A8%E8%81%8C%E5%91%98%E5%B7%A5' \
+  -H 'fpn: TenantBase.InServiceEmployeeNavView' \
+  -H 'ftc: f8d39b50-9ab8-4b5c-8592-7f832fc624c1' \
+  -H 'fver: 4.11.8' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'tenant_id: 110088' \
+  -H 'user_id: 128514306' \
+  --data-raw '{"SearchCondition":{"table_data":{"advance":{"cmp_render":{"viewPath":"PureTable","status":"enable"}},"tableChangeReason":"tableCapacityChange","navViewIsCustom":false,"hasCheckColumn":true,"ext_data":{"ListViewLabel":"在职员工列表","SortCursor":"[15,-8482271754592561180]"},"isEnableGlobleCheck":false,"hasRowHandler":true,"paging":{"total":2397,"capacity":15,"page":0,"capacityList":[15,30,60,100]},"navViewVersion":"20190805135007764","isAvatars":true,"viewName":"TenantBase.SingleObjectListView.InServiceEmployeeInformationList","operateColumWidth":140,"navViewName":"TenantBase.InServiceEmployeeNavView","extendsParam":"","isSyncRowHandler":false,"isFrozenOperationColumnHandler":false,"isCustomListViewExisted":true,"getTreeNodeUrl":null,"sort_fields":[{"sort_column":"OrderCode","sort_dir":"asc"}],"description":"在职员工列表，以员工基本信息为主对象","metaObjName":"TenantBase.EmployeeInformation","isCustomListView":true},"search_data":{"metaObjName":"TenantBase.EmployeeInformation","searchView":"TenantBase.InServiceEmployeeSearchView","items":[{"name":"TenantBase.EmployeeInformation.ApprovalStatus","text":"生效","value":"4","num":"10","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmployeeInformation.StdIsDeleted","text":"是","value":"1","num":"11","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"\\59ea2c79-d1c7-44dc-b188-a25ecfdebde0~TenantBase.EmploymentRecord.EmployeeStatus","text":"试用, 正式","value":"2,3","num":"12","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"\\59ea2c79-d1c7-44dc-b188-a25ecfdebde0~TenantBase.EmploymentRecord.EmployType","text":"内部员工, 实习生","value":"0,2","num":"13","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.StdIsDeleted","text":"是","value":"1","num":"14","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.IsCurrentRecord","text":"是","value":"1","num":"15","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.ServiceType","text":"主职","value":"0","num":"16","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false},{"name":"TenantBase.EmploymentRecord.ApprovalStatus","text":"生效","value":"4","num":"17","metaObjName":"","metaFieldRelationIDPath":"","queryAreaSubNodes":false}],"searchFormFilterJson":null}},"IDS":"16bf2cbe-1974-40ee-83f7-8db3304b3f71,2c00d8f0-56e4-4a4b-849c-3ea2930df285,388e51a2-5f0a-452a-a8b7-c0c40803c28e,ebec2c61-3d26-4213-be00-e75df6e79ab4,ff685632-1f0b-4395-8b21-8259cf372f34,ff931615-c06b-45bb-9e77-148efbf3a321,4cdb04df-2bb9-475c-8dd5-7a2a58b72df5,c55fe62c-cb55-4a5e-a7a7-0d1f4428f85d,758e3f7d-c7f9-4d24-9c09-80a11efb1035,9895171a-b88b-46cd-ad3b-6ef7d4e7f63a,eddb8481-17b9-4e83-99dc-ee586a13550d,d048fc34-c998-4a19-93c3-9c8f9e70da1c,70b000ce-2f79-408b-8abe-ac6b922882b8,a395f216-f7b2-485c-b7fe-35f551b4e1a6,bf6a141d-816c-4cd7-9224-2d42939d8b18"}'
+
+  # 文件类型
+  curl 'https://cloud.italent.cn/api/v2/UI/ExportAttach?app=TenantBase&metaObjName=TenantBase.EmployeeInformation&viewName=TenantBase.SingleObjectListView.InServiceEmployeeInformationList&tenantID=110088&userID=128514306&btnCode_sa=extxiazaozhaop&btnMetaObjectName_sa=TenantBase.EmployeeInformation&ticket_sa=undefined&time=1749198683015&shadow_context=%7BappModel%3A%22italent%22%2Cuppid%3A%22%22%7D&_qsrcapp=tenantbase&quark_s=d3907e0163f7fd9f7715ecfc4e4d5651bfe0a628d72d13afc288ffa9b415a819' \
+  -H 'Accept: application/json, application/xml, text/play, text/html, */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -b 'iTalent-tenantId=; 00000000-0000-0000-0000-000000000000.widgetState=false; user_polling_timespace_110088=0; isItalentLogin=; Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; ssn_Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; italentLoginSync=1749521879213; key-128514306=true' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://cloud.italent.cn/TenantBase?_qsrcapp=tenantbase&_qrt=html&quark_s=32fd05a204f01683939f9da3c83019d5424fd8a2a70a27862e69f9794f0b2d9c' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'X-Sourced-By: ajax' \
+  -H 'fal: %E4%B8%8B%E8%BD%BD%E9%99%84%E4%BB%B6' \
+  -H 'fan: extxiazaozhaop' \
+  -H 'fapp: TenantBase' \
+  -H 'fpl: %E5%9C%A8%E8%81%8C%E5%91%98%E5%B7%A5' \
+  -H 'fpn: TenantBase.InServiceEmployeeNavView' \
+  -H 'ftc: 11b9461f-4026-464d-94f4-3072d4791a49' \
+  -H 'fver: 4.11.8' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'tenant_id: 110088' \
+  -H 'user_id: 128514306'
+
+# 文件枚举
+  [
+    {
+        "text": "毕业证书",
+        "value": "extbyz_110088_1670906579"
+    },
+    {
+        "text": "附件",
+        "value": "b98f6f3d-416b-4797-b713-f865c9f22075~Attachment"
+    },
+    {
+        "text": "技能证书上传-工信部认证",
+        "value": "extjinengzhengshushangchuangongxinbu_110088_448227983"
+    },
+    {
+        "text": "技能证书上传-技术语言类",
+        "value": "extjinengzhengshushangchuanjishuyuyanlei_110088_1031639707"
+    },
+    {
+        "text": "技能证书上传-其他",
+        "value": "extjinengzhengshushangchuanqita_110088_1339354384"
+    },
+    {
+        "text": "技能证书上传-职称类/管理类",
+        "value": "extjinengzhengshushangchuanzhichengguanli_110088_246535035"
+    },
+    {
+        "text": "离职证明上传",
+        "value": "extlizhizhengmingshangchua_110088_2061983820"
+    },
+    {
+        "text": "身份证上传",
+        "value": "extshenfenzhengshangchuan_110088_54688042"
+    },
+    {
+        "text": "体检报告上传",
+        "value": "exttijianbaogaoshangchuan_110088_232654566"
+    },
+    {
+        "text": "学位证书",
+        "value": "extxwzs_110088_865720833"
+    },
+    {
+        "text": "银行卡上传",
+        "value": "extyinhangkashangchuan_110088_53428451"
+    },
+    {
+        "text": "照片",
+        "value": "IDPhoto"
+    },
+    {
+        "text": "照片缩略图",
+        "value": "SmallIDPhoto"
+    }
+]
+
+curl 'https://www.italent.cn/api/v1/110088/128514306/messages/Get?app_id=-1&app_type=-1&beginDate=2025%2F06%2F10+10%3A30%3A00&endDate=&page_num=1&page_size=20&status=2&__t=1749523155112&_qsrcapp=Italent&quark_s=22101cf246a66fdb395590af41cbc877bdcc9be0d400daeeee4ecda7fa4a55d1' \
+  -H 'Accept: application/json, application/xml, text/play, text/html, */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: undefined' \
+  -b 'iTalent-tenantId=; isItalentLogin=; loginBackgroundIndex=2; Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; ssn_Tita_PC=GqFux106k_U0g_e2S9N3llwlaVe6fKAgxIhVYGjHIljhREWF2A-PKpg4D0WNIxHs; italentLoginSync=1749521879213; key-128514306=true; user_polling_timespace_110088=0' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://www.italent.cn/128514306/ItalentIframeHome?_qsrcapp=Italent&_qrt=html&quark_s=56be1bfb1ef44325c19611547fb7d41715e3df541953e74633c6bc74fc7be2ce' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' \
+  -H 'X-Sourced-By: ajax' \
+  -H 'sec-ch-ua: "Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'tenant_id: 110088' \
+  -H 'user_id: 128514306'
+
+20250610 11:00:00 存在4条失败的情况：
+银行卡上传 照片 离职证明上传 身份证上传 各一条

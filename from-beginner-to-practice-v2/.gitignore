@@ -1,0 +1,13 @@
+# 忽略数据库和 Redis 数据文件夹
+mysql_data/
+redis_data/
+
+# 忽略虚拟环境
+.venv/
+
+# 忽略 Python 缓存
+__pycache__/
+*.pyc
+
+# 忽略环境配置文件（保护你的密码）
+.env

@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_fastAPI
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: chen1234 # 设置你的 root 密码
+      MYSQL_DATABASE: fast_database # 可选：初始化创建一个数据库
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql # 将数据持久化到本地 ./mysql_data 目录
+
+  redis:
+    image: redis:alpine
+    container_name: redis_fastAPI
+    restart: always
+    command: redis-server --requirepass chen1234 # 设置 Redis 密码
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data # 将数据持久化到本地 ./redis_data 目录
